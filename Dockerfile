@@ -21,13 +21,14 @@ ENV VERSION_GO_GRPC="1.1.0"
 WORKDIR /tmp/build
 
 RUN apt-get update \
- && apt-get install -y build-essential curl unzip
-
-RUN curl -sLo protoc.zip "https://github.com/protocolbuffers/protobuf/releases/download/v${VERSION_PROTOC}/protoc-${VERSION_PROTOC}-linux-${ARCH_PROTOC}.zip" \
+ && apt-get install -y build-essential curl unzip \
+ && curl -sLo protoc.zip \
+    "https://github.com/protocolbuffers/protobuf/releases/download/v${VERSION_PROTOC}/protoc-${VERSION_PROTOC}-linux-${ARCH_PROTOC}.zip" \
  && unzip protoc.zip \
  && go install "github.com/golang/protobuf/protoc-gen-go@v${VERSION_GO_PROTO}" \
  && go install "google.golang.org/grpc/cmd/protoc-gen-go-grpc@v${VERSION_GO_GRPC}" \
- && curl -sLo buf.tar.gz "https://github.com/bufbuild/buf/releases/download/v${VERSION_BUF}/buf-linux-${ARCH_BUF}.tar.gz" \
+ && curl -sLo buf.tar.gz \
+    "https://github.com/bufbuild/buf/releases/download/v${VERSION_BUF}/buf-linux-${ARCH_BUF}.tar.gz" \
  && tar -xvzf buf.tar.gz -C /usr/local --strip-components 1  \
  && cd / \
  && rm -rf /tmp/build
