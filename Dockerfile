@@ -15,7 +15,7 @@ FROM branch-arch-${GOARCH}
 ENV GOBIN=/usr/local/bin
 ENV VERSION_BUF="1.0.0-rc12"
 ENV VERSION_PROTOC="3.19.4"
-ENV VERSION_GO_PROTO="1.23.0"
+ENV VERSION_GO_PROTO="1.3.3"
 ENV VERSION_GO_GRPC="1.1.0"
 
 RUN apt-get update \
@@ -24,7 +24,7 @@ RUN apt-get update \
 RUN curl -sLo protoc.zip \
     "https://github.com/protocolbuffers/protobuf/releases/download/v${VERSION_PROTOC}/protoc-${VERSION_PROTOC}-linux-${ARCH_PROTOC}.zip" \
  && unzip protoc.zip \
- && go install "google.golang.org/protobuf/cmd/protoc-gen-go@v${VERSION_GO_PROTO}" \
+ && go install "github.com/golang/protobuf/protoc-gen-go@v${VERSION_GO_PROTO}" \
  && go install "google.golang.org/grpc/cmd/protoc-gen-go-grpc@v${VERSION_GO_GRPC}"
 
 RUN curl -sLo buf.tar.gz "https://github.com/bufbuild/buf/releases/download/v${VERSION_BUF}/buf-linux-${ARCH_BUF}.tar.gz" \
