@@ -18,4 +18,4 @@ Generate proto files
 ```
 FLOW_PROTOBUF_PATH=/Users/pargue/dev/onflow/flow/protobuf
 docker run --rm -v ${FLOW_PROTOBUF_PATH}:/src -ti protoc -c "make generate"
-```# flow-protoc-docker
+```
